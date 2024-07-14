@@ -20,7 +20,7 @@ def creating_dataset(classes):
         for cluster in range(6):
             
             #Her bir resmin yolunu alma.
-            image_paths= glob.glob(f"clusters/{class_}/cluster_{cluster}/*.jpg")
+            image_paths= glob.glob(f"clustered_images/{class_}/cluster_{cluster}/*.jpg")
 
             for image_path in image_paths:
                 shutil.copy(image_path,f"dataset/{class_}/")
@@ -41,7 +41,10 @@ TRAIN_PATH = "model_dataset/train"
 TEST_PATH = "model_dataset/test"
 VAL_PATH = "model_dataset/val"
 SPLIT_RATIO = 0.8
-VAL_RATIO = 0.05
+VAL_RATIO = 0.02 # 5 adet
+
+
+
 # ? DATASET KLASÖRÜNÜN OLUŞTURULMASI
 os.makedirs(TRAIN_PATH, exist_ok=True)
 os.makedirs(TEST_PATH, exist_ok=True)
