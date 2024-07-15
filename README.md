@@ -43,6 +43,9 @@ Methods used in this project include:
 - Transfer Learning with Torch
 - GUI development using Gradio
 
+![alt text](image-3.png)
+
+
 
 ## Contribution
 
