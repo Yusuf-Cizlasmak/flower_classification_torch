@@ -19,7 +19,7 @@ Follow the steps below to run the project:
 2. Download the dataset and prepare it accordingly.
 3. Run the `main.py` to apply resoultion, cropping and get the image embeddings.
 4. Run the `train.py` file to train the model.
-5. Use the `predict.py` file to classify flowers using the trained model.
+5. Use the `gradio_interface.py` file to classify flowers using the trained model.
 
 ## Results
 
