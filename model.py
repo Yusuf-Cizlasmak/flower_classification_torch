@@ -31,11 +31,11 @@ class CustomDataset(Dataset):
 class CustomModel(nn.Module):
     def __init__(self, num_classes):
         super(CustomModel, self).__init__()
-        self.model = timm.create_model("resnet18", pretrained=True)
+        self.model = timm.create_model("efficientnet_b1", pretrained=True)
         
         self.features = nn.Sequential(*list(self.model.children())[:-1]) # son layerı çıkartıyoruz
 
-        network_size=512
+        network_size=1280
 
         self.classifier= nn.Sequential( nn.Flatten(),
             nn.Linear(network_size, num_classes)
@@ -44,12 +44,7 @@ class CustomModel(nn.Module):
 
     def forward(self, x):
         x = self.features(x)
-        output= self.classifier(x)
+        output = self.classifier(x)
         return output
     
-    def visualize(self, x, save_path):
-        dot = make_dot(self.forward(x), params=dict(self.named_parameters()))
-        dot.format = 'png'
-        dot.render('model')
 
-    

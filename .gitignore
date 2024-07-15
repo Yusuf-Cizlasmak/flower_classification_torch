@@ -168,4 +168,8 @@ cropped_images
 clustered_images
 dataset
 model_dataset
+model
+trash
+flagged
+
 
