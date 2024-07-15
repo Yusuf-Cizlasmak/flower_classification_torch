@@ -30,7 +30,9 @@ The PCA and K-Means clustering methods were used to cluster the images based on 
 
 ![alt text](image-2.png)
 
-The success criterion of this project is the model's ability to classify flower species with high accuracy. The performance of the model on the training and test datasets will be evaluated, and the results will be reported.
+
+The success criterion of this project is the model's ability to classify flower species using a confusion matrix and loss function. The performance of the model on both the training and test datasets will be evaluated, and the results will be reported.
+
 
 ![alt text](image.png)
 ![alt text](image-1.png)
