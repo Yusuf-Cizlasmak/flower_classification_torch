@@ -38,16 +38,16 @@ def predict(image):
 
     predictions = torch.nn.functional.softmax(predictions, dim=1)[
         0
-    ]  # Tahmin sonuçlarını olasılığa çevirir.
+    ]  
 
     confidences = {
         labels[i]: float(predictions[i]) for i in range(num_classes)
     }  # Sınıf isimleri ve olasılıklarını bir sözlükte toplar.
 
-    return confidences  # Sözlüğü döndürür.
+    return confidences  
 
 
-# ŞİMDİ GRADIO İNTERFACE'İ OLUŞTURUYORUZ.
+# ŞİMDİ GRADIO INTERFACE OLUŞTURUYORUZ.
 
 gr.Interface(fn=predict,
     inputs=gr.Image(type="pil"),
