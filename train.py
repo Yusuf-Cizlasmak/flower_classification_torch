@@ -92,10 +92,14 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 # Training
 train_losses = []
 val_losses = []
+train_accuracies = []
+val_accuracies = []
 
 for epoch in range(num_epochs):
     model.train()
     running_loss = 0.0
+    correct_train = 0
+    total_train = 0
 
     for images, labels in tqdm(train_dataset, desc="Training loop"):
         images, labels = images.to(device), labels.to(device)
@@ -110,10 +114,19 @@ for epoch in range(num_epochs):
 
         running_loss += loss.item() * labels.size(0)
 
+        _, predicted = torch.max(outputs, 1)
+        total_train += labels.size(0)
+        correct_train += (predicted == labels).sum().item()
+
     train_loss = running_loss / len(train_dataset.dataset)
     train_losses.append(train_loss)
+    train_accuracy = 100 * correct_train / total_train
+    train_accuracies.append(train_accuracy)
 
     model.eval()
+    running_loss = 0.0
+    correct_val = 0
+    total_val = 0
 
     with torch.no_grad():
         for images, labels in tqdm(val_dataset, desc="Validation loop"):
@@ -124,16 +137,19 @@ for epoch in range(num_epochs):
 
             running_loss += loss.item() * labels.size(0)
             _, predicted = torch.max(outputs, 1)
-
+            total_val += labels.size(0)
+            correct_val += (predicted == labels).sum().item()
 
     val_loss = running_loss / len(val_dataset.dataset)
     val_losses.append(val_loss)
-
+    val_accuracy = 100 * correct_val / total_val
+    val_accuracies.append(val_accuracy)
 
     print(
-        f"Epoch {epoch+1}/{num_epochs} - Train loss: {train_loss}, Validation loss: {val_loss}"
+        f"Epoch {epoch+1}/{num_epochs} - Train loss: {train_loss}, Train accuracy: {train_accuracy}%, Validation loss: {val_loss}, Validation accuracy: {val_accuracy}%"
     )
-        # Save Model
+
+    # Save Model
     os.makedirs("model", exist_ok=True)
     torch.save(obj=model.state_dict(), f=f"model/flower_{epoch}.pth")
 
@@ -144,6 +160,15 @@ for epoch in range(num_epochs):
     plt.ylabel('Loss')
     plt.legend()
     plt.savefig('losses.png')
+    plt.clf()
+
+    # Plot accuracies
+    plt.plot(train_accuracies, label='Train Accuracy')
+    plt.plot(val_accuracies, label='Validation Accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.savefig('accuracies.png')
     plt.clf()
 
 

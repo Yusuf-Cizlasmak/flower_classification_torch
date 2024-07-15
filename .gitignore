@@ -172,4 +172,6 @@ model
 trash
 flagged
 
+*.png
+
 

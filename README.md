@@ -18,6 +18,7 @@ Follow the steps below to run the project:
 1. Use the `requirements.txt` file to install the necessary dependencies.
 2. Download the dataset and prepare it accordingly.
 3. Run the `main.py` to apply resoultion, cropping and get the image embeddings.
+4. Run the `vectorization.py` to get the embeddings of the images and create dataset.
 4. Run the `train.py` file to train the model.
 5. Use the `gradio_interface.py` file to classify flowers using the trained model.
 
@@ -33,9 +34,11 @@ The PCA and K-Means clustering methods were used to cluster the images based on 
 
 The success criterion of this project is the model's ability to classify flower species using a confusion matrix and loss function. The performance of the model on both the training and test datasets will be evaluated, and the results will be reported.
 
-
-![alt text](image.png)
 ![alt text](image-1.png)
+![alt text](image-5.png)
+![alt text](image-4.png)
+
+
 
 Methods used in this project include:
 
@@ -45,7 +48,6 @@ Methods used in this project include:
 - Transfer Learning with Torch
 - GUI development using Gradio
 
-![alt text](image-3.png)
 
 
 

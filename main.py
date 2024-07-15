@@ -14,7 +14,7 @@ from unsupervisedBasedCrop_gray import unsupervised_crop_gray
 
 
 
-classes = ["Lilly","Lotus","Orchid","Sunflower","Tulip"]
+classes = ["Tulip"]
 # Verileri kontrol etme.
 
 for class_ in classes:
@@ -48,11 +48,11 @@ for class_ in classes:
     images= [load_image(path) for path in paths]
 
 
-    img2vec=Img2Vec(cuda=False) #cuda=True ile GPU üzerinde çalıştırma
+    img2vec=Img2Vec(cuda=False,model="efficientnet_b1") #cuda=True ile GPU üzerinde çalıştırma
 
     embeddings= img2vec.get_vec(images) #Resimlerden embedding çıkarma
 
-    print(embeddings.shape) # (n, 512) n: resim sayısı
+    print(embeddings.shape) # (n, 1280) n: resim sayısı
 
 
     df = pd.DataFrame(embeddings)
